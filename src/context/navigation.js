@@ -21,7 +21,7 @@ function NavigationProvider({ children }) {
         setCurrentPath(to);
     };
 
-    return <NavigationContext.Provider value={{}}>
+    return <NavigationContext.Provider value={{ navigate, currentPath }}>
         {children}
     </NavigationContext.Provider>
 };
