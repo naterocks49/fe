@@ -4,10 +4,17 @@ import Panel from './Panel';
 
 function Dropdown({ options, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
+    const divEl = useRef();
 
     useEffect(() => {
         const handler = (event) => {
-            console.log(event.target);
+            if (!divEl.current) {
+                return;
+            }
+
+            if (!divEl.current.contains(event.target)) {
+                setIsOpen(false);
+            }
         };
 
         document.addEventListener('click', handler, true);
@@ -33,7 +40,7 @@ function Dropdown({ options, value, onChange }) {
             </div>)
     });
 
-    return <div className='w-48 relative'>
+    return <div ref={divEl} className='w-48 relative'>
         <Panel className="flex justify-between items-center cursor-pointer" onClick={handleClick}>{value?.label || 'Select...'}<GoChevronDown className='text-lg' /></Panel>
         {isOpen && <Panel className='absolute top-full'>{renderedOptions}</Panel>}
     </div>;
