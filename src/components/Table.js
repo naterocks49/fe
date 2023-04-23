@@ -1,4 +1,4 @@
-function Table({ data }) {
+function Table({ data, config }) {
 
     const renderedData = data.map((row) => {
         return (
