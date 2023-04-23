@@ -3,14 +3,14 @@ function Table({ data, config }) {
         return <th key={column.kay}>{column.label}</th>
     });
 
-    const renderedData = data.map((row) => {
+    const renderedRows = data.map((fruit) => {
+        const renderedCells = config.map((column) => {
+            return <td key={column.label}>{column.render(fruit)}</td>
+        });
+
         return (
-            <tr key={row.name} className="border-b">
-                <td className="p-3">{row.name}</td>
-                <td className="p-3">
-                    <div className={`p-3 m-2 ${row.color}`}></div>
-                </td>
-                <td className="p-3">{row.score}</td>
+            <tr key={fruit.name} className="border-b">
+                {renderedCells}
             </tr>
         );
     });
@@ -23,7 +23,7 @@ function Table({ data, config }) {
                 </tr>
             </thead>
             <tbody>
-                {renderedData}
+                {renderedRows}
             </tbody>
         </table>
     );
