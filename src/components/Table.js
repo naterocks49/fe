@@ -4,7 +4,9 @@ function Table({ data }) {
         return (
             <tr key={row.name} className="border-b">
                 <td className="p-3">{row.name}</td>
-                <td className="p-3">{row.color}</td>
+                <td className="p-3">
+                    <div className={`p-3 m-2 ${row.color}`}></div>
+                </td>
                 <td className="p-3">{row.score}</td>
             </tr>
         );
